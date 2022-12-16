@@ -32,11 +32,11 @@ local inventorycounter = T{
 	settings = settings.load(default_settings)
 };
 
-local UpdateSettings = function()
+local UpdateSettings = function(settings)
+    inventorycounter.settings = settings;
     if (inventorycounter.font ~= nil) then
-        inventorycounter.font:destroy();
+        inventorycounter.font:apply(inventorycounter.settings.font)
     end
-    inventorycounter.font = fonts.new(inventorycounter.settings.font);
 end
 
 
