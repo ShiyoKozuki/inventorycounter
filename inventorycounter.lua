@@ -5,6 +5,7 @@ addon.desc      = 'Shows inventory space';
 addon.link      = 'https://github.com/ShiyoKozuki';
 
 require('common');
+require('shiyolibs');
 local chat = require('chat');
 local fonts = require('fonts');
 local settings = require('settings');
@@ -47,8 +48,15 @@ end);
 
 
 ashita.events.register('d3d_present', 'present_cb', function ()
-
     local fontObject = inventorycounter.font;
+
+    if ShouldHideUI() then
+        fontObject.visible = false
+        return
+    else
+        fontObject.visible = true
+    end
+
     if (fontObject.position_x > windowWidth) then
       fontObject.position_x = 0;
     end
